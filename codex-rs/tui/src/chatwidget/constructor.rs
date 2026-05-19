@@ -261,6 +261,7 @@ impl ChatWidget {
         widget
             .bottom_pane
             .set_vim_enabled(widget.config.tui_vim_mode_default);
+        widget.bottom_pane.enter_vim_insert_mode();
         widget
             .bottom_pane
             .set_status_line_enabled(!widget.configured_status_line_items().is_empty());

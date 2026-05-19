@@ -1,3 +1,25 @@
+# Personal fork build
+
+- The `cod` shell function launches `codex-rs/target/release/codex-package/bin/codex`. It does not
+  launch `codex-rs/target/debug/codex` or the npm-installed `codex` on `PATH`.
+- After updating or changing this personal fork, rebuild the artifact used by `cod` from the
+  repository root with:
+
+  ```bash
+  python3 scripts/build_codex_package.py \
+    --target aarch64-apple-darwin \
+    --cargo-profile release \
+    --package-dir codex-rs/target/release/codex-package \
+    --archive-output codex-rs/target/release/codex-package-aarch64-apple-darwin.tar.gz \
+    --force
+  ```
+
+- Do not treat a successful `cargo build` or `cargo build -p codex-cli` as completing a rebuild for
+  this personal fork; those commands do not refresh the release package used by `cod`.
+- Before reporting the rebuild complete, run
+  `codex-rs/target/release/codex-package/bin/codex --version` and verify that the packaged binary was
+  freshly written.
+
 # Rust/codex-rs
 
 In the codex-rs folder where the rust code lives:
