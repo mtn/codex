@@ -226,6 +226,7 @@ impl ChatWidget {
         widget
             .bottom_pane
             .set_vim_enabled(widget.config.tui_vim_mode_default);
+        widget.bottom_pane.enter_vim_insert_mode();
         widget
             .bottom_pane
             .set_realtime_conversation_enabled(widget.realtime_conversation_enabled());

@@ -448,6 +448,11 @@ impl BottomPane {
         self.request_redraw();
     }
 
+    pub(crate) fn enter_vim_insert_mode(&mut self) {
+        self.composer.enter_vim_insert_mode();
+        self.request_redraw();
+    }
+
     pub(crate) fn toggle_vim_enabled(&mut self) -> bool {
         let enabled = self.composer.toggle_vim_enabled();
         self.request_redraw();
@@ -1208,6 +1213,11 @@ impl BottomPane {
     #[cfg(test)]
     pub(crate) fn composer_is_vim_enabled(&self) -> bool {
         self.composer.is_vim_enabled()
+    }
+
+    #[cfg(test)]
+    pub(crate) fn composer_vim_mode_label(&self) -> Option<&'static str> {
+        self.composer.vim_mode_label()
     }
 
     pub(crate) fn composer_should_handle_vim_insert_escape(&self, key_event: KeyEvent) -> bool {
