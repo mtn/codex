@@ -7,12 +7,6 @@ use crate::terminal_hyperlinks::HyperlinkParagraph;
 use std::cell::Cell;
 
 impl ChatWidget {
-    /// Render only the composer-side surface while an embedded transcript owns the rows above it.
-    pub(crate) fn as_bottom_pane_renderable(&self) -> RenderableItem<'_> {
-        self.bottom_pane
-            .as_renderable_with_composer_right_reserve(/*composer_right_reserve*/ 0)
-    }
-
     pub(crate) fn as_renderable(&self) -> RenderableItem<'_> {
         if self
             .bottom_pane
