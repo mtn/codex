@@ -241,6 +241,7 @@ mod thread_session_state;
 mod thread_settings;
 mod thread_title;
 mod transcript_export;
+mod transcript_viewport;
 mod working_directory;
 
 use self::agent_navigation::AgentNavigationDirection;
@@ -767,7 +768,10 @@ impl App {
             event
         };
 
-        if self.overlay.is_some() {
+        if self.embedded_transcript_active() {
+            self.handle_embedded_transcript_event(tui, app_server, event)
+                .await?;
+        } else if self.overlay.is_some() {
             let _ = self
                 .handle_backtrack_overlay_event(tui, app_server, event)
                 .await?;
